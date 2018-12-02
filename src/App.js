@@ -5,15 +5,18 @@ import MonopolyBoard from './Board.js';
 const game = Game({
   setup: (ctx) => {
     const G = {
-      1: false,
-      2: false,
-      3: false
+      streets: ['OLD KENT ROAD', 'WHITECHAPEL ROAD',
+      'THE ANGEL, ISLINGTON', 'EUSTON ROAD', 'PENTONVILLE ROAD',
+      'PALL MALL', '	WHITEHALL', 'NORTHUMBERLAND AVENUE',
+      'BOW STREET', 'MARLBOROUGH STREET', 'VINE STREET'
+    ],
+      activeTile : -1
     };
     return G;
   },
   moves: {
-    selectCell (G, ctx, id) {
-        G[id] = !G[id]
+    selectCell (G, ctx, index) {
+        G.activeTile = index;
     }
   }
 })
