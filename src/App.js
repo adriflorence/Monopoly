@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Client} from 'boardgame.io/react';
+import {Game} from 'boardgame.io/core';
+import MonopolyBoard from './Board.js';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const game = Game({
+  setup: (ctx) => {
+    const G = {
+      1: false,
+      2: false,
+      3: false
+    };
+    return G;
+  },
+  moves: {
+    selectCell (G, ctx, id) {
+        G[id] = !G[id]
+    }
   }
-}
+})
+
+const App = Client( {
+  game: game,
+  board: MonopolyBoard
+});
 
 export default App;
