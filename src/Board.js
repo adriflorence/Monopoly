@@ -1,31 +1,37 @@
 import React from 'react';
-import './Board.css';
 import Tile from './Tile';
 
 class MonopolyBoard extends React.Component {
-  render() {
 
-    let tiles = [];
+  render() {
+    let tiles = []; // _top = []; let tiles_right = []; let tiles_bottom = []; let tiles_left = [];
     for(let i=0; i<this.props.G.streets.length; i++){
-      let tile = {};
-      if(this.props.G.activeTile === i){
-          tile = <Tile key={i} street={this.props.G.streets[i]} isActive={true}/>
-      } else {
-          tile = <Tile key={i} street={this.props.G.streets[i]} isActive={false}/>
-      }
-      tiles.push(tile);
+        let tile = {};
+        tile = <Tile key={i} street={this.props.G.streets[i]} playerColour='#fff'/>
+        console.log(this.props.G);
+        for(let j = 0; j<Object.keys(this.props.G.players).length; j++){
+          if(this.props.G.players[j].activeTile === i){
+              tile = <Tile key={i} street={this.props.G.streets[i]} playerColour={this.props.G.players[j].colour}/>
+          }
+        }
+        tiles.push(tile);
     }
+
     const generateNumber = () => {
-      this.props.moves.selectCell(
-        Math.floor(Math.random() * Math.floor(tiles.length))
-      )
+      const random = Math.floor(Math.random()*10)+2;
+      this.props.moves.moveToTile(random);
     }
     const button = <button onClick={generateNumber}>click!</button>
 
     return (
       <div>
         {button}
-        {tiles}
+        <div className="grid-container">
+          {tiles}
+        </div>
+        <div className="info-box">
+
+        </div>
       </div>
     )
   }
