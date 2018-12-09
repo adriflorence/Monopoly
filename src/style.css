@@ -152,6 +152,12 @@
   border-bottom: 2px solid #555;
 }
 
+.piece {
+  position: relative;
+  z-index: 10;
+  height: 30px;
+}
+
 .brown {
   background-color: #743426;
 }

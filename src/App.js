@@ -52,11 +52,13 @@ const game = Game({
         0: {
           colour: '#ea2323',
           activeTile: 0,
+          piece: 'pieces/01_tophat.png',
           budget: 1000,
         },
         1: {
           colour: '#6eb749',
           activeTile: 0,
+          piece: 'pieces/02_car.png',
           budget: 1000,
         }
       }

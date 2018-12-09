@@ -7,12 +7,13 @@ class MonopolyBoard extends React.Component {
     let tiles = []; // _top = []; let tiles_right = []; let tiles_bottom = []; let tiles_left = [];
     for(let i=0; i<this.props.G.streets.length; i++){
         let tile = {};
-        tile = <Tile key={i} street={this.props.G.streets[i]} playerColour='#fff'/>
-        console.log(this.props.G);
+        tile = <Tile key={i} street={this.props.G.streets[i]} players={players}/>
+        let players = [];
         for(let j = 0; j<Object.keys(this.props.G.players).length; j++){
           if(this.props.G.players[j].activeTile === i){
-              tile = <Tile key={i} street={this.props.G.streets[i]} playerColour={this.props.G.players[j].colour}/>
+              players.push(this.props.G.players[j]);
           }
+          tile = <Tile key={i} street={this.props.G.streets[i]} players={players}/>
         }
         tiles.push(tile);
     }
@@ -30,7 +31,8 @@ class MonopolyBoard extends React.Component {
           {tiles}
         </div>
         <div className="info-box">
-
+            <p>Player 1: <img className="piece" src={this.props.G.players[0].piece}/> {this.props.G.players[0].budget}</p>
+            <p>Player 2: <img className="piece" src={this.props.G.players[1].piece}/> {this.props.G.players[1].budget}</p>
         </div>
       </div>
     )
